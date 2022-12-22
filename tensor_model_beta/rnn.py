@@ -59,7 +59,7 @@ regressor.add(Dense(units = 1))
 regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 
 # Fitting the RNN to the Training set
-regressor.fit(X_train, y_train, epochs = 1000, batch_size = 64)
+regressor.fit(X_train, y_train, epochs = 100, batch_size = 32)
 
 
 
@@ -69,7 +69,7 @@ dataset_test = pd.read_csv('Stock_Price_Test.csv')
 real_stock_price = dataset_test.iloc[:, 1:2].values
 
 # Getting the predicted stock price of 2022
-dataset_total = pd.concat((dataset_train['Open'], dataset_test['Open']), axis = 0)
+dataset_total = pd.concat((dataset_train['open'], dataset_test['open']), axis = 0)
 inputs = dataset_total[len(dataset_total) - len(dataset_test) - 60:].values
 inputs = inputs.reshape(-1,1)
 inputs = sc.transform(inputs)
